@@ -11,7 +11,7 @@ class UserManager(BaseUserManager):
 
         elif not full_name:
             raise ValueError('Users must have an full name')
-        
+
         user = self.model(
             email=self.normalize_email(email),
             full_name=full_name,

@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser
 from .managers import UserManager
 
 
+# Customizing user model
 class User(AbstractBaseUser):
     email = models.EmailField(unique=True)
     full_name = models.CharField(max_length=80)
@@ -11,7 +12,7 @@ class User(AbstractBaseUser):
     is_admin = models.BooleanField(default=False)
 
     objects = UserManager()
-    
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['phone_number', 'full_name']
 
@@ -27,3 +28,12 @@ class User(AbstractBaseUser):
     @property
     def is_staff(self):
         return self.is_admin
+
+
+class OtpCode(models.Model):
+    phone_number = models.CharField(max_length=11)
+    code = models.PositiveSmallIntegerField()
+    created = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.phone_number

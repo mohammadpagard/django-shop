@@ -2,6 +2,9 @@
     <div class="container-fluid">
         <div class="navbar-nav">
             <a class="nav-link active" href="{% url 'home:home' %}">Home</a>
+            {% if not request.user.is_authenticated %}
+                <a class="nav-link active" href="{% url 'accounts:register' %}">Sign up</a>
+            {% endif %}
         </div>
     </div>
 </nav>
