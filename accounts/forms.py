@@ -61,6 +61,20 @@ class UserRegisterForm(forms.Form):
         widget=forms.PasswordInput(attrs={'class': 'form-control'})
     )
 
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        user = User.objects.filter(email=email)
+        if user:
+            raise ValidationError('This email already exists!')
+        return email
+
+    def clean_phone_number(self):
+        phone_number = self.cleaned_data['phone_number']
+        user = User.objects.filter(phone_number=phone_number)
+        if user:
+            raise ValidationError('This phone number already exists!')
+        return phone_number
+
 
 class RegisterVerifyCodeForm(forms.Form):
     code = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))

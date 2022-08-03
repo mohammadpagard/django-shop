@@ -10,10 +10,11 @@ from utils import send_otp_code
 
 class UserRegisterView(View):
     form_class = UserRegisterForm
+    template_name = 'accounts/register.html'
 
     def get(self, request):
         form = self.form_class
-        return render(request, 'accounts/register.html', {'form': form})
+        return render(request, self.template_name, {'form': form})
 
     def post(self, request):
         form = self.form_class(request.POST)
@@ -30,7 +31,7 @@ class UserRegisterView(View):
             }
             messages.success(request, 'We send you a code', 'success')
             return redirect('accounts:register_verify_code')
-        return redirect('home:home')
+        return render(request, self.template_name, {'form': form})
 
 
 class UserRegisterVerifyCode(View):
