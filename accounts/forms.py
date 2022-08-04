@@ -1,4 +1,5 @@
 from django import forms
+from requests import request
 from .models import User
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
@@ -78,3 +79,10 @@ class UserRegisterForm(forms.Form):
 
 class RegisterVerifyCodeForm(forms.Form):
     code = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+
+
+class UserLoginForm(forms.Form):
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs={'class': 'form-control'}
+    ))

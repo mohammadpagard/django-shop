@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
+from requests import request
 from .managers import UserManager
+from django.utils import timezone
+from django.contrib import messages
 
 
 # Customizing user model
@@ -33,7 +36,13 @@ class User(AbstractBaseUser):
 class OtpCode(models.Model):
     phone_number = models.CharField(max_length=11)
     code = models.PositiveSmallIntegerField()
-    created = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(default=timezone.now)
+    # expired = models.DateTimeField(default=timezone.)
 
     def __str__(self):
         return self.phone_number
+
+    def expired_code(self, request):
+        if timezone.datetime.minute == 2:
+            self.code.delete()
+            messages.error(request, "You're code is expired", 'error')
