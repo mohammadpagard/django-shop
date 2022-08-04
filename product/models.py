@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -23,7 +24,7 @@ class Product(models.Model):
     name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True)    
     category = models.ManyToManyField(Category, related_name='products')
-    image = models.ImageField(upload_to='products/image/')
+    image = models.ImageField(upload_to='products/image/%Y/%m/')
     description = models.TextField()
     price = models.IntegerField()
     available = models.BooleanField(default=True)
@@ -39,3 +40,6 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         return super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('product:detail', args=[self.slug, ])

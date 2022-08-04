@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }} Detail{% endblock %}
+
+{% block content %}
+
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                        aria-expanded="true" aria-controls="collapseOne">
+                    {{ product.name }}
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                 data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}"
+                         style="width: 50%">
+                    <br>
+                    {{ product.description|linebreaks }}
+                    <br>
+                    <strong>{{ product.created.date }}</strong>
+                    <br>
+                    <!-- T = In Iranian Toman -->
+                    <code>Price: {{ product.price }}T</code>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

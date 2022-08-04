@@ -6,7 +6,22 @@
 {% block content %}
 
     <div class="home-header">
-        <h1>Home page</h1>
+        <h1 class="text-center">Pagard online shop</h1>
+        <hr>
+    </div>
+
+    <div class="product">
+        {% for p in product %}
+            <div class="card" style="width: 18rem;">
+                <img src="{{ p.image.url }}" class="card-img-top" alt="{{ p.name }}">
+                <div class="card-body">
+                    <a href="{{ p.get_absolute_url }}">
+                        <h5 class="card-title">{{ p.name }}</h5>
+                    </a>
+                    <p class="card-text">{{ p.description|truncatewords:8 }}</p>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 
 {% endblock %}
