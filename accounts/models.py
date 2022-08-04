@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
-from requests import request
 from .managers import UserManager
 from django.utils import timezone
 from django.contrib import messages
@@ -41,8 +40,3 @@ class OtpCode(models.Model):
 
     def __str__(self):
         return self.phone_number
-
-    def expired_code(self, request):
-        if timezone.datetime.minute == 2:
-            self.code.delete()
-            messages.error(request, "You're code is expired", 'error')

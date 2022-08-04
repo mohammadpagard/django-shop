@@ -50,7 +50,6 @@ class UserRegisterVerifyCode(View):
 		if form.is_valid():
 			cd = form.cleaned_data
 			if cd['code'] == code_instance.code:
-				OtpCode.expired_code()
 				User.objects.create_user(
 					user_session['email'],
 					user_session['full_name'],
