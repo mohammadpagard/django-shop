@@ -16,6 +16,8 @@ class UserRegisterView(View):
 
 	def get(self, request):
 		form = self.form_class
+		if request.user.is_authenticated:
+			return redirect('home:home')
 		return render(request, self.template_name, {'form': form})
 
 	def post(self, request):
@@ -41,6 +43,8 @@ class UserRegisterVerifyCode(View):
 
 	def get(self, request):
 		form = self.form_class
+		if request.user.is_authenticated:
+			return redirect('home:home')
 		return render(request, 'accounts/register_verify.html', {'form': form})
 
 	def post(self, request):
@@ -71,16 +75,15 @@ class UserLoginView(View):
 
 	def get(self, request):
 		form = self.form_class()
+		if request.user.is_authenticated:
+			return redirect('home:home')
 		return render(request, self.template_name, {'form': form})
 
 	def post(self, request):
 		form = self.form_class(request.POST)
 		if form.is_valid():
 			cd = form.cleaned_data
-			# get user fields
-			email = request.POST['email']
-			password = request.POST['password']
-			user = authenticate(request, email=email, password=password)
+			user = authenticate(request, email=cd['email'], password=cd['password'])
 			if user is not None:
 				login(request, user)
 				messages.success(request, 'you logged in successfully', 'success')

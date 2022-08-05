@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from .managers import UserManager
-from django.utils import timezone
-from django.contrib import messages
 
 
 # Customizing user model
@@ -33,10 +31,9 @@ class User(AbstractBaseUser):
 
 
 class OtpCode(models.Model):
-    phone_number = models.CharField(max_length=11)
+    phone_number = models.CharField(max_length=11, unique=True)
     code = models.PositiveSmallIntegerField()
-    created = models.DateTimeField(default=timezone.now)
-    # expired = models.DateTimeField(default=timezone.)
+    created = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.phone_number

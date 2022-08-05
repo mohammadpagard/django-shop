@@ -1,0 +1,19 @@
+.jumbotron{
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #e9ecef;
+}
+
+div.home-header {
+    color: #6b22af;
+}
+
+div.product a {
+    text-decoration: none;
+    color: #6b22af;
+}
+
+div.accordion-body img {
+    margin-left: 26%;
+    padding-bottom: 5%;
+}
