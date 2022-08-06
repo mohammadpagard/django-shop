@@ -5,6 +5,9 @@ from django.urls import reverse
 
 class Category(models.Model):
     name = models.CharField(max_length=200)
+    is_sub = models.BooleanField(default=False)
+    sub_category = models.ForeignKey('self', on_delete=models.CASCADE,
+                                     related_name='scategory', null=True, blank=True)
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True)
 
     class Meta:
@@ -18,6 +21,9 @@ class Category(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         return super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('home:category_filter', args=[self.slug, ])
 
 
 class Product(models.Model):

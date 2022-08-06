@@ -17,7 +17,7 @@
                  data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     <img src="{{ product.image.url }}" alt="{{ product.name }}"
-                         style="width: 50%">
+                         width="650px" height="500px">
                     <br>
                     {{ product.description|linebreaks }}
                     <br>
@@ -25,6 +25,14 @@
                     <br>
                     <!-- T = In Iranian Toman -->
                     <code>Price: {{ product.price }}T</code>
+                    <hr>
+                    <!-- cart quantity -->
+                    <form action="{% url 'orders:cart_add' product.id %}" method="post">
+                        {% csrf_token %}
+                        {{ form }}
+                        <br>
+                        <button type="submit" class="btn btn-primary btn-sm">Add to cart</button>
+                    </form>
                 </div>
             </div>
         </div>

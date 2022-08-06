@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Carts{% endblock %}
+
+{% block content %}
+
+    <table class="table table-dark table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Unit price</th>
+            <th scope="col">Total price</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for c in cart %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ c.product }}</td>
+                <td>{{ c.quantity }}</td>
+                <td>{{ c.price }}</td>
+                <td>{{ c.total_price }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -10,10 +10,30 @@
         <hr>
     </div>
 
+    <div class="categories">
+        <h5>Categories:</h5>
+        {% for c in category %}
+            <div class="btn-group">
+                <a href="{{ c.get_absolute_url }}" class="btn btn-danger">{{ c.name }}</a>
+                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu">
+                    {% for sc in c.scategory.all %}
+                        <li><a class="dropdown-item" href="{{ sc.get_absolute_url }}">{{ sc.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+    <br>
+
     <div class="product">
         {% for p in product %}
-            <div class="card" style="width: 18rem;">
-                <img src="{{ p.image.url }}" class="card-img-top" alt="{{ p.name }}">
+            <div class="card" style="width: 18rem; display: inline-block;">
+                <img src="{{ p.image.url }}" class="card-img-top" alt="{{ p.name }}"
+                     width="300px" height="200px">
                 <div class="card-body">
                     <a href="{{ p.get_absolute_url }}">
                         <h5 class="card-title">{{ p.name }}</h5>
