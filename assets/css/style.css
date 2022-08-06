@@ -17,3 +17,29 @@ div.accordion-body img {
     margin-left: 26%;
     padding-bottom: 5%;
 }
+
+table.table-striped i {
+    font-size: 35px;
+    color: red;
+}
+
+nav.navbar i.fa-shopping-cart {
+    font-size:30px;
+    color: #e9ecef;
+    margin-top: 6px;
+    margin-left: 30px;
+}
+
+nav.navbar i.fa-shopping-cart span.cart-length {
+    font-size:20px;
+}
+
+nav.navbar i.fa-home {
+    font-size: 20px;
+    color: #e9ecef;
+}
+
+nav.navbar i.fa-user {
+    font-size: 20px;
+    color: #e9ecef;
+}

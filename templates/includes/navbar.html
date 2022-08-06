@@ -1,14 +1,21 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <div class="navbar-nav">
-            <a class="nav-link active" href="{% url 'home:home' %}">Home</a>
+            <a class="nav-link active" href="{% url 'home:home' %}">Home
+                <i class="fa fa-home"></i>
+            </a>
             {% if not request.user.is_authenticated %}
-            <a class="nav-link active" href="{% url 'accounts:register' %}">Sign up</a>
-            <a class="nav-link active" href="{% url 'accounts:login' %}">Login</a>
+                <a class="nav-link active" href="{% url 'accounts:register' %}">Sign up</a>
+                <a class="nav-link active" href="{% url 'accounts:login' %}">Login</a>
             {% endif %}
             {% if request.user.is_authenticated %}
-                <a class="nav-link active" href="#">Profile</a>
+                <a class="nav-link active" href="#">Profile
+                    <i class="fa fa-user"></i>
+                </a>
                 <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
+                <a href="{% url 'orders:cart' %}"><i class="fa fa-shopping-cart">
+                    <span class="cart-length">{{ cart|length }}</span>
+                </i></a>
             {% endif %}
         </div>
     </div>
