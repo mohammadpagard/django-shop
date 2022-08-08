@@ -6,5 +6,11 @@
 
     <h3>Checkout</h3>
     <p>Total: {{ order.get_total_price }}</p>
+    <hr>
+    <form action="{% url 'orders:coupon' order.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Apply coupon</button>
+    </form>
 
 {% endblock %}

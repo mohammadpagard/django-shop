@@ -30,5 +30,6 @@ class UserManager(BaseUserManager):
             phone_number=phone_number,
         )
         user.is_admin = True
+        user.is_superuser = True
         user.save(using=self._db)
         return user

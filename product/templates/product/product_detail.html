@@ -19,7 +19,7 @@
                     <img src="{{ product.image.url }}" alt="{{ product.name }}"
                          width="650px" height="500px">
                     <br>
-                    {{ product.description|linebreaks }}
+                    {{ product.description|linebreaks|safe }}
                     <br>
                     <strong>{{ product.created.date }}</strong>
                     <br>

@@ -5,3 +5,7 @@ class CartAddForm(forms.Form):
     quantity = forms.IntegerField(min_value=1, max_value=7, widget=forms.NumberInput(
         attrs={'class': 'form-control'}
     ))
+
+
+class CouponForm(forms.Form):
+    code = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))

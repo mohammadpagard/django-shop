@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
+from ckeditor.fields import RichTextField
 
 
 class Category(models.Model):
@@ -31,7 +32,7 @@ class Product(models.Model):
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True)    
     category = models.ManyToManyField(Category, related_name='products')
     image = models.ImageField(upload_to='products/image/%Y/%m/')
-    description = models.TextField()
+    description = RichTextField()
     price = models.IntegerField()
     available = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
