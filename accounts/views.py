@@ -1,13 +1,15 @@
+# Django packages
 from django.shortcuts import render, redirect
 from django.views import View
-from .models import User, OtpCode
-from .forms import UserRegisterForm, UserLoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import RegisterVerifyCodeForm
-import random
+# Local apps
+from .models import User, OtpCode
+from .forms import *
 from utils import send_otp_code
+# Third party apps
+import random
 
 
 class UserRegisterView(View):

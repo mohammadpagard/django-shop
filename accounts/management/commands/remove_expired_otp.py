@@ -1,7 +1,10 @@
+# Django packages
 from django.core.management.base import BaseCommand
-from accounts.models import OtpCode
+# Third party apps
 from datetime import datetime, timedelta
 import pytz
+# Local apps
+from accounts.models import OtpCode
 
 
 class Command(BaseCommand):

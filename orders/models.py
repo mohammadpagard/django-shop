@@ -1,7 +1,9 @@
+# Django packages
 from django.db import models
-from accounts.models import User
-from product.models import Product
 from django.core.validators import MinValueValidator, MaxValueValidator
+# Local apps
+from product.models import Product
+from accounts.models import User
 
 
 class Order(models.Model):

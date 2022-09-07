@@ -1,5 +1,7 @@
+# Django packages
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+# Local apps
 from .forms import UserChangeForm, UserCreationForm
 from .models import User, OtpCode
 

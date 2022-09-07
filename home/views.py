@@ -1,5 +1,7 @@
+# Django packages
 from django.shortcuts import render
 from django.views import View
+# Local apps
 from product.models import Product, Category
 
 

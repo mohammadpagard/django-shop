@@ -1,7 +1,9 @@
+# Django packages
 from django import forms
-from .models import User, OtpCode
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
+# Local apps
+from .models import User, OtpCode
 
 
 class UserCreationForm(forms.ModelForm):

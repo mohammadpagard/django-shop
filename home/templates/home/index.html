@@ -31,14 +31,14 @@
 
     <div class="product">
         {% for p in product %}
-            <div class="card" style="width: 18rem; display: inline-block;">
+            <div class="card"
+                 style="width: 18rem; display: inline-block; padding: 5px; margin-bottom: 20px">
                 <img src="{{ p.image.url }}" class="card-img-top" alt="{{ p.name }}"
-                     width="300px" height="200px">
+                     width="300px" height="200px" style="padding: 30px">
                 <div class="card-body">
                     <a href="{{ p.get_absolute_url }}">
-                        <h5 class="card-title">{{ p.name }}</h5>
+                        <h5 class="card-title text-center">{{ p.name }}</h5>
                     </a>
-                    <p class="card-text">{{ p.description|truncatewords:8 }}</p>
                 </div>
             </div>
         {% endfor %}

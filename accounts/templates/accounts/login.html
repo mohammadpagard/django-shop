@@ -1,13 +1,22 @@
+{% load socialaccount %}
+
 {% extends 'base.html' %}
 
 {% block title %}User login{% endblock %}
 
 {% block content %}
 
-    <form action="" method="post" novalidate>
+    <!-- <form action="" method="post" novalidate>
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Login</button>
-    </form>
+    </form> -->
+
+    {% if user.is_authenticated %}
+        <h4>{{ request.user.email }}</h4>
+    {% else %}
+        <a href="{% provider_login_url 'google' %}">Login with google</a>
+    {% endif %}
+
 
 {% endblock %}

@@ -15,7 +15,7 @@ class Category(models.Model):
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
         ordering = ('name',)
-    
+
     def __str__(self):
         return self.name
 
@@ -29,7 +29,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=200, unique=True, blank=True, null=True)    
+    slug = models.SlugField(max_length=200, unique=True, blank=True, null=True)
     category = models.ManyToManyField(Category, related_name='products')
     image = models.ImageField(upload_to='products/image/%Y/%m/')
     description = RichTextField()

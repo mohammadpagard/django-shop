@@ -1,11 +1,14 @@
+# Django packages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from product.models import Product
+from django.contrib import messages
+# Local apps
 from .carts import Cart
 from .forms import CartAddForm, CouponForm
 from .models import Order, OrderItem, Coupon
-from django.contrib import messages
+from product.models import Product
+# Third party apps
 import datetime
 
 
