@@ -1,6 +1,7 @@
 # Django packages
 from django.shortcuts import render
 from django.views import View
+from django.db.models import Q
 # Local apps
 from product.models import Product, Category
 
@@ -17,3 +18,16 @@ class HomeView(View):
             'product': product,
             'category': categories
         })
+
+
+def search(request):
+    search_product = request.GET.get('search')
+    if search_product:
+        products = Product.objects.filter(
+            Q(name__icontains=search_product) & Q(description__icontains=search_product)
+        )
+    else:
+        products = Product.objects.all().order_by("-created")
+    
+    context = {'product': products}
+    return render(request, 'home/index.html', context)

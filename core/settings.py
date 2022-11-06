@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Third party apps
     'ckeditor',
+    'django_elasticsearch_dsl',
     # My apps
     'accounts.apps.AccountsConfig',
     'home.apps.HomeConfig',
@@ -175,5 +176,12 @@ SOCIALACCOUNT_PROVIDERS = {
         'AUTH_PARAMS': {
             'access_type': 'online',
         }
+    }
+}
+
+# Elastic Search Settings
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': 'localhost:8000'
     }
 }

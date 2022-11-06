@@ -10,6 +10,18 @@
         <hr>
     </div>
 
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="d-flex" role="search" action="{% url 'home:search-products' %}">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+    </nav>
+    <hr>
+
     <div class="categories">
         <h5>Categories:</h5>
         {% for c in category %}
