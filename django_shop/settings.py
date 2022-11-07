@@ -26,12 +26,7 @@ SECRET_KEY = "django-insecure-659i3ocbf6rq0bwcag^hz3vk6x%rf-5(&)u26k_&x4q$5(!*(n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'https://simple-shop.iran.liara.run/',
-    'https://www.simple-shop.iran.liara.run/',
-    'http://simple-shop.iran.liara.run/',
-    'http://www.simple-shop.iran.liara.run/'
-]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -152,6 +147,7 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+AUTH_USER_MODEL = 'accounts.User'
 
 CKEDITOR_CONFIGS = {
     'default': {
