@@ -11,7 +11,7 @@ class ProductDocument(Document):
             'number_of_shards': 1,
             'number_of_replicas': 0
         }
-    
+
     class Django:
         model = Product
         fields = ['name', 'slug']
