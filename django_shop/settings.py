@@ -26,7 +26,12 @@ SECRET_KEY = "django-insecure-659i3ocbf6rq0bwcag^hz3vk6x%rf-5(&)u26k_&x4q$5(!*(n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'https://simple-shop.iran.liara.run/',
+    'https://www.simple-shop.iran.liara.run/',
+    'http://simple-shop.iran.liara.run/',
+    'http://www.simple-shop.iran.liara.run/'
+]
 
 
 # Application definition
@@ -87,12 +92,8 @@ WSGI_APPLICATION = "django_shop.wsgi.application"
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'djShop',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
