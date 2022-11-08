@@ -26,7 +26,16 @@ SECRET_KEY = "django-insecure-659i3ocbf6rq0bwcag^hz3vk6x%rf-5(&)u26k_&x4q$5(!*(n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'simple-shop.iran.liara.run',
+    '127.0.0.1',
+    'localhost'
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://simple-shop.iran.liara.run',
+    'http://simple-shop.iran.liara.run'
+]
 
 
 # Application definition
@@ -40,6 +49,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Third party apps
     'ckeditor',
+    'django_elasticsearch_dsl',
     # My apps
     'accounts.apps.AccountsConfig',
     'home.apps.HomeConfig',
@@ -85,10 +95,21 @@ WSGI_APPLICATION = "django_shop.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'simple-shop',
+        'USER': 'root',
+        'PASSWORD': '9fbSLb75ZnH3AAyu0UDbU4V4',
+        'HOST': 'django-p-db',
+        'PORT': '5432',
     }
 }
 
@@ -96,7 +117,7 @@ DATABASES = {
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379'
+        'LOCATION': 'redis://:UWIOzY9TdZtaxR8Nt0hdL9bR@django-db:6379/0'
     }
 }
 
@@ -147,15 +168,17 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# Change default user model
 AUTH_USER_MODEL = 'accounts.User'
 
+# CKeditor config
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',
     }
 }
 
-
+# Social accounts settings
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'SCOPE': [
@@ -166,4 +189,16 @@ SOCIALACCOUNT_PROVIDERS = {
             'access_type': 'online',
         }
     }
+}
+
+# Elasticsearch settings
+from elasticsearch import RequestsHttpConnection
+
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': 'pagard-db:9200',
+        'user_ssl': True,
+        'http_auth': ('elastic', 'fAPyyYPEmiFpWswRar7gURSo'),
+        'connection_class': RequestsHttpConnection
+    },
 }

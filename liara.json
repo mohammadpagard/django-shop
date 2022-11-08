@@ -1,0 +1,8 @@
+{
+    "disks": [
+      {
+        "name": "django-db",
+        "mountTo": "db"
+      }
+    ]
+}
