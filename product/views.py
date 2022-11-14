@@ -6,7 +6,7 @@ from orders.forms import CartAddForm
 
 class ProductDetailView(View):
     def get(self, request, *args, **kwargs):
-        product = get_object_or_404(Product, slug=kwargs['slug'])
+        product = get_object_or_404(Product, pk=kwargs['pk'])
         form = CartAddForm()
         return render(request, 'product/product_detail.html', {
             'product': product,

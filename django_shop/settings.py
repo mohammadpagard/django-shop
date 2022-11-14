@@ -25,6 +25,9 @@ SECRET_KEY = "django-insecure-659i3ocbf6rq0bwcag^hz3vk6x%rf-5(&)u26k_&x4q$5(!*(n
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
+DEBUG = True
+
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -58,6 +61,22 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+# Database settings
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379'
+    }
+}
+SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
 ROOT_URLCONF = "django_shop.urls"
 
@@ -148,13 +167,10 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 # Elasticsearch settings
-from elasticsearch import RequestsHttpConnection
+# from elasticsearch import RequestsHttpConnection
 
 ELASTICSEARCH_DSL = {
     'default': {
-        'hosts': 'pagard-db:9200',
-        'user_ssl': True,
-        'http_auth': ('elastic', 'fAPyyYPEmiFpWswRar7gURSo'),
-        'connection_class': RequestsHttpConnection
+        'hosts': '127.0.0.1:9200'
     },
 }

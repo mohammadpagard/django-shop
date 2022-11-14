@@ -1,8 +1,11 @@
 {
     "disks": [
       {
-        "name": "django-db",
-        "mountTo": "db"
+        "name": "media",
+        "mountTo": "media"
       }
-    ]
+    ],
+    "django": {
+    "settingsFile": "django_shop/settings.py"
+  }
 }

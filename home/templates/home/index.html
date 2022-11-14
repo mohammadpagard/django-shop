@@ -13,13 +13,19 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
           <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-            <form class="d-flex" role="search" action="{% url 'home:search-products' %}">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+            <form class="d-flex" role="search" action="">
+              <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search"> -->
+              {{ form }}
               <button class="btn btn-success" type="submit">Search</button>
             </form>
           </div>
         </div>
     </nav>
+    <p>
+        {% for result in results %}
+            <p><a href="{% url 'product:detail' result.meta.id %}">{{ result.name }}</a></p>
+        {% endfor %}
+    </p>
     <hr>
 
     <div class="categories">
