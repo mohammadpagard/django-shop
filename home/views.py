@@ -21,6 +21,7 @@ class HomeView(View):
         results = {}
         if request.GET.get('search'):
             results = ProductDocument.search().query('match', name=request.GET['search'])
+            results = ProductDocument.search().filter('fuzzy', name=request.GET['search'])
 
         context = {
             'product': product,
