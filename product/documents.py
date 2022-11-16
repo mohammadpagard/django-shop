@@ -1,6 +1,6 @@
-# Elastick packages
+# Elastic packages
 from django_elasticsearch_dsl import Document, fields
-from elasticsearch_dsl import analyzer, tokenizer, char_filter
+from elasticsearch_dsl import analyzer
 from django_elasticsearch_dsl.registries import registry
 # Local apps
 from .models import Product
@@ -9,7 +9,7 @@ from .models import Product
 html_strip = analyzer(
     'html_strip',
     tokenizer='standard',
-    filter=["lowecase", "stop", "snowball"],
+    filter=["lowercase", "stop", "snowball"],
     char_filter=['html_strip']
 )
 
