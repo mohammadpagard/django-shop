@@ -8,6 +8,13 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ('created', 'available')
     search_fields = ('name', 'description')
     raw_id_fields = ('category',)
+    prepopulated_fields = {'slug': ("name",)}
 
 
-admin.site.register(Category)
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'is_sub')
+    list_filter = ('is_sub',)
+    search_fields = ('name',)
+    raw_id_fields = ('sub_category',)
+    prepopulated_fields = {'slug': ('name',)}

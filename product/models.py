@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils.text import slugify
 from django.urls import reverse
 from ckeditor.fields import RichTextField
 
@@ -10,6 +9,8 @@ class Category(models.Model):
     sub_category = models.ForeignKey('self', on_delete=models.CASCADE,
                                      related_name='scategory', null=True, blank=True)
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name = 'Category'
@@ -18,10 +19,6 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-        return super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('home:category_filter', args=[self.slug, ])
@@ -43,10 +40,6 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
-
-    # def save(self, *args, **kwargs):
-    #     self.slug = slugify(self.name)
-    #     return super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('product:detail', args=[self.id, ])

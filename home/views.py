@@ -1,11 +1,12 @@
 # Django packages
 from django.shortcuts import render
 from django.views import View
+# Third party apps
 from elasticsearch_dsl import Search
+from elasticsearch_dsl import Q
 # Local apps
 from product.models import Product, Category
 from product.forms import ProductSearchForm
-from elasticsearch_dsl import Q
 
 
 class HomeView(View):
